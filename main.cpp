@@ -45,11 +45,6 @@ void doNewtonRaphson(float* bufA, float* bufB, int* resultNormal, int a, int b, 
 			reciprocal = vmulq_f32(vrecpsq_f32(vectorB, reciprocal), reciprocal);
 			result = vmulq_f32(vectorA, reciprocal);
 		}
-		if(iteration == 3)
-		{
-			float32x4_t _05 = vdupq_n_f32(0.5f);
-			result = vaddq_f32(result, _05);
-		}
 		vst1q_s32(resultNEON, vcvtq_s32_f32(result));
 		compareArray(resultNormal, resultNEON, a, b, iteration);
 	}
@@ -69,8 +64,6 @@ void testReciprocal(int a, int b)
 		bufB[i] = (float)(b+i);
 	}
 
-	doNewtonRaphson(bufA, bufB, resultNormal, a, b, 0);
-	doNewtonRaphson(bufA, bufB, resultNormal, a, b, 1);
 	doNewtonRaphson(bufA, bufB, resultNormal, a, b, 2);
 }
 
