@@ -1,8 +1,9 @@
-# sampleReciprocalNeoniteration:2 expected:1 actual:0 -126/-126
+# sampleReciprocalNeon
 
 -Output on Jetson TK1
 
 ```
+iteration:2 expected:1 actual:0 -126/-126
 iteration:2 expected:1 actual:0 -125/-125
 iteration:2 expected:2 actual:1 -126/-63
 iteration:2 expected:3 actual:2 -126/-42
