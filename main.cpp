@@ -20,7 +20,6 @@ void compareArray(int *normal, int* neon, int a, int b, int iteration)
 
 void doNewtonRaphson(float* bufA, float* bufB, int* resultNormal, int a, int b, int iteration)
 {
-
 	// compute A/B
 	float32x4_t vectorA = vld1q_f32(bufA);
 	float32x4_t vectorB = vld1q_f32(bufB);
@@ -42,6 +41,11 @@ void doNewtonRaphson(float* bufA, float* bufB, int* resultNormal, int a, int b, 
 		{
 			reciprocal = vmulq_f32(vrecpsq_f32(vectorB, reciprocal), reciprocal);
 			result = vmulq_f32(vectorA, reciprocal);
+		}
+		if(iteration == 3)
+		{
+			float32x4_t _05 = vdupq_n_f32(0.5f);
+			result = vaddq_f32(result, _05);
 		}
 		vst1q_s32(resultNEON, vcvtq_s32_f32(result));
 		compareArray(resultNormal, resultNEON, a, b, iteration);
