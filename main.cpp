@@ -1,6 +1,6 @@
 #include <iostream>
 #include <arm_neon.h>
-#ifndef __ARM_NEON__
+#ifndef __ARM_NEON
 #error // activate neon
 #endif
 
